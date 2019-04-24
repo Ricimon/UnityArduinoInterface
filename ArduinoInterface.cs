@@ -6,24 +6,31 @@ using System.Threading.Tasks;
 using Microsoft.Win32;
 using System.Collections.Generic;
 using UnityEngine;
-using Generics;
 
 public class ArduinoInterface : GenericSingletonClass<ArduinoInterface>
 {
     /// <summary>
-    /// Triggered on every line read from the serial port stream.
+    /// Triggered on every line read from the serial port stream. 
+    /// Do not subscribe Unity methods to this event, as this event will not be raised on the Unity main thread.
     /// </summary>
     public Action<string> dataReceived;
 
+    [Tooltip("Arduino VID, found from Device Manager. See README for instructions to getting this value.")]
     [SerializeField] private string VID = null;
+    [Tooltip("Arduino PID, found from Device Manager. See README for instructions to getting this value.")]
     [SerializeField] private string PID = null;
+    [Tooltip("Serial port baud rate.")]
     [SerializeField] private int baudRate = 0;
+    [Tooltip("Initialize and open the serial port stream on Start?")]
     [SerializeField] private bool initializeOnStart = true;
 
     private SerialPort _stream;
 
     private CancellationTokenSource _cts;
 
+    /// <summary>
+    /// Closes the serial port stream.
+    /// </summary>
     public void StopSerialMonitoring()
     {
         _cts.Cancel();
@@ -31,6 +38,9 @@ public class ArduinoInterface : GenericSingletonClass<ArduinoInterface>
             _stream.Close();
     }
 
+    /// <summary>
+    /// Opens the serial port stream and starts constantly reading from it.
+    /// </summary>
     public void StartSerialMonitoring()
     {
         if (_stream != null && !_stream.IsOpen)
@@ -41,11 +51,15 @@ public class ArduinoInterface : GenericSingletonClass<ArduinoInterface>
         }
     }
 
+    /// <summary>
+    /// Attempts to find the Arduino specified by the VID and PID, and opens a serial port stream to it if found.
+    /// </summary>
+    /// <returns>True if the stream was opened successfully or is already open, false if an error occurred</returns>
     public bool InitializeAndOpenStream()
     {
         if (_stream != null && _stream.IsOpen)
         {
-            Debug.Log("Stream is already open!");
+            Debug.LogWarning("Stream is already open!");
             return true;
         }
 
@@ -62,12 +76,12 @@ public class ArduinoInterface : GenericSingletonClass<ArduinoInterface>
                     return true;
                 }
             }
-            Debug.Log("No matching COM ports found");
+            Debug.LogError("No matching COM ports found with given VID and PID");
             return false;
         }
         else
         {
-            Debug.Log("No COM ports found");
+            Debug.LogError("No COM ports found with given VID and PID");
             return false;
         }
     }
