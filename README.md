@@ -34,3 +34,10 @@ The stream can be closed by calling StopSerialMonitoring, and re-opened by calli
 To parse the Arduino stream data, subscribe a function to the dataReceived event to parse the incoming data. This event is raised every time a line is read by the interface, and it passes the contents of the line through the event.
 
 If your Arduino stream outputs as fast as possible, the suggested implementation is to create an intermediate class that parses the data as it comes in and populates a data object, which other classes can read from in their Update methods. This way, Unity visuals will still update at Unity's FPS while data is updated at the Arduino's update rate.
+
+*Note*: Do not call Unity methods in functions subscribed to the dataReceived event, as the event will not be raised on the Unity main thread.
+
+
+# Internals
+
+The internal implementation dedicates a thread to constantly read from the serial port, so that the Unity main thread is never blocked if the Arduino fails to refresh at a rate equal or faster to Unity's FPS.
