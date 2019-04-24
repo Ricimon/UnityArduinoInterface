@@ -4,6 +4,8 @@ A robust way to read Arduino (or any serial bus) output into Unity
 Tested to work on 2018.3.6+, but will probably work on Unity 5+
 
 # How to use
+Clone or download this repo into any folder under Assets/
+
 The ArduinoInterface class is a Singleton MonoBehaviour. To add the interface to your scene, simply add the script as a component to any GameObject.
 
 ![ss1](https://user-images.githubusercontent.com/24966782/56639156-dfbbe680-6624-11e9-902a-7baa90f6af3c.png)
