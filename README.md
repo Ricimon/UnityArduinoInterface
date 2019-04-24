@@ -19,6 +19,8 @@ Here's how to find your Arduino's VID and PID:
     * USB\VID_2341&PID_0043\75736303336351B021D1
 * In this case, the Arduino's VID is 2341, and its PID is 0043.
 
+---
+
 Since the interface is a singleton, it can be accessed by calling ArduinoInterface.instance  
 
 Reading the data stream from the Arduino can be either manually or automatically started. To manually initialize and start the stream, call the InitializeAndOpenStream method.  
@@ -29,4 +31,4 @@ The stream can be closed by calling StopSerialMonitoring, and re-opened by calli
 
 To parse the Arduino stream data, subscribe a function to the dataReceived event to parse the incoming data. This event is raised every time a line is read by the interface, and it passes the contents of the line through the event.
 
-If your Arduino stream outputs as fast as possible, my suggestion is to create an intermediate class that parses the data as it comes in and populates a data object, which other classes can read from in their Update methods. This way, Unity visuals will still update at Unity's FPS while data is updated at the Arduino's update rate.
+If your Arduino stream outputs as fast as possible, the suggested implementation is to create an intermediate class that parses the data as it comes in and populates a data object, which other classes can read from in their Update methods. This way, Unity visuals will still update at Unity's FPS while data is updated at the Arduino's update rate.
