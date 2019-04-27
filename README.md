@@ -1,5 +1,5 @@
 # UnityArduinoInterface
-A robust way to read Arduino (or any serial bus) output into Unity  
+A robust way to read Arduino output into Unity  
 
 Tested to work on 2018.3.6+, but will probably work on Unity 5+
 
