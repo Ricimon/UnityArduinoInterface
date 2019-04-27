@@ -92,10 +92,7 @@ public class ArduinoInterface : GenericSingletonClass<ArduinoInterface>
         {
             _cts.Token.ThrowIfCancellationRequested();
 
-            if (dataReceived != null)
-            {
-                dataReceived(_stream.ReadLine());
-            }
+            dataReceived?.Invoke(_stream.ReadLine());
         }
     }
 
