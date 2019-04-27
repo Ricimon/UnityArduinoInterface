@@ -3,9 +3,9 @@ A robust way to read Arduino output into Unity
 
 Tested to work on 2018.3.6+, but will probably work on Unity 5+
 
-# Requirements (Find under Player Settings)
-Scripting Runtime Version: .NET 4.x Equivalent
-Api Compatibility Level: .NET 4.x
+## Requirements (Find under Player Settings)
+Scripting Runtime Version: .NET 4.x Equivalent  
+Api Compatibility Level: .NET 4.x  
 
 # How to use
 Clone or download this repo into any folder under Assets/
