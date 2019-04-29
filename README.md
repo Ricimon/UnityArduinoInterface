@@ -1,7 +1,7 @@
 # UnityArduinoInterface
 A robust way to read Arduino output into Unity  
 
-Tested to work on 2018.3.6+, but will probably work on Unity 5+
+Tested to work on 2018.3.1+, but will probably work on Unity 5+
 
 ## Requirements (Find under Player Settings)
 Scripting Runtime Version: .NET 4.x Equivalent  
