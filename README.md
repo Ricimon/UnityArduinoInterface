@@ -16,9 +16,9 @@ The ArduinoInterface class is a Singleton MonoBehaviour. To add the interface to
 
 Rather than using a specified COM port to connect to an Arduino, this interface uses the Arduino's VID and PID to automatically detect the COM port it's on. This allows the Arduino to be found regardless of which USB port it was plugged into.
 
-Here's how to find your Arduino's VID and PID:
+Here's how to find your Arduino's VID and PID (Windows):
 * Connect your Arduino to your computer.
-* On Windows, open up Device Manager (search Device Manager in the start menu).
+* Open up Device Manager (search Device Manager in the start menu).
 * Expand "Ports (COM & LPT)"
 * Look for the Arduino, and double click it.
 * Click on the Details tab
